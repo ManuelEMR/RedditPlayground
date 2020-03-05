@@ -56,15 +56,31 @@
 		6FBCEEC8240F3F45008EBD4A /* RedditApp */ = {
 			isa = PBXGroup;
 			children = (
+				6FBCEEDD240F3F58008EBD4A /* Data */,
+				6FBCEED7240F3F49008EBD4A /* Info.plist */,
+				6FBCEEDE240F3F5E008EBD4A /* Presentation */,
+			);
+			path = RedditApp;
+			sourceTree = "<group>";
+		};
+		6FBCEEDD240F3F58008EBD4A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		6FBCEEDE240F3F5E008EBD4A /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
 				6FBCEEC9240F3F45008EBD4A /* AppDelegate.swift */,
 				6FBCEECB240F3F45008EBD4A /* SceneDelegate.swift */,
 				6FBCEECD240F3F45008EBD4A /* ViewController.swift */,
 				6FBCEECF240F3F45008EBD4A /* Main.storyboard */,
 				6FBCEED2240F3F49008EBD4A /* Assets.xcassets */,
 				6FBCEED4240F3F49008EBD4A /* LaunchScreen.storyboard */,
-				6FBCEED7240F3F49008EBD4A /* Info.plist */,
 			);
-			path = RedditApp;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
