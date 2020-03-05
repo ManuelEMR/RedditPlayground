@@ -16,22 +16,39 @@ class ViewController: UIViewController {
         config.applicationNameForUserAgent = "manuelemr-v1"
         let wkView = WKWebView(frame: view.bounds, configuration: config)
         wkView.uiDelegate = self
+        wkView.navigationDelegate = self
+        wkView.scrollView.maximumZoomScale = 5
         view.addSubview(wkView)
         wkView.frame = view.bounds
         return wkView
     }()
     
+    private let oauthHandler = RedditOAuthHandler()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let url = URL(string: "https://www.reddit.com/api/v1/authorize?client_id=KuUP0BXhatcrFA&response_type=code&state=hello&redirect_uri=http://manuelemr/reddit&duration=permanent&scope=read")
+        let url = URL(string: oauthHandler.authorizeURL)
         let urlRequest = URLRequest(url: url!)
         webView.load(urlRequest)
     }
-
-
 }
 
 extension ViewController: WKUIDelegate {
     
+}
+
+extension ViewController: WKNavigationDelegate {
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        guard let url = navigationAction.request.url,
+            !url.absoluteString.hasPrefix("http://"),
+            !url.absoluteString.hasPrefix("https://"),
+            let query = url.query,
+            UIApplication.shared.canOpenURL(url) else {
+                decisionHandler(.allow)
+                return
+        }
+        
+        query.split("&")
+    }
 }
