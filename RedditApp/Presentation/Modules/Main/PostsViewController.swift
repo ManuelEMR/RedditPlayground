@@ -31,6 +31,8 @@ class PostsViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(requestPosts), for: .valueChanged)
         tableView.refreshControl = refreshControl
         tableView.dataSource = self
+//        tableView.estimatedRowHeight = 44
+//        tableView.rowHeight = UITableView.automaticDimension
     }
     
     @objc private func requestPosts() {
@@ -40,6 +42,7 @@ class PostsViewController: UIViewController {
             case.success(let list):
                 DispatchQueue.main.async {
                     self?.posts = list.data.children.map { $0.data }
+                        .map { Post(model: $0) }
                     self?.refreshControl.endRefreshing()
                 }
                 break

@@ -24,8 +24,9 @@
 		6FE2D9DB2412DA4A00A64866 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FE2D9DA2412DA4A00A64866 /* Main.storyboard */; };
 		6FE2D9DD2412E7E800A64866 /* Thing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2D9DC2412E7E800A64866 /* Thing.swift */; };
 		6FE2D9DF2412E88F00A64866 /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2D9DE2412E88F00A64866 /* Listing.swift */; };
-		6FE2D9E12412E9ED00A64866 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2D9E02412E9ED00A64866 /* Post.swift */; };
+		6FE2D9E12412E9ED00A64866 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2D9E02412E9ED00A64866 /* PostModel.swift */; };
 		6FE2D9E32412F16000A64866 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2D9E22412F16000A64866 /* PostTableViewCell.swift */; };
+		6FE2D9E52412F61100A64866 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2D9E42412F61100A64866 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,8 +49,9 @@
 		6FE2D9DA2412DA4A00A64866 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		6FE2D9DC2412E7E800A64866 /* Thing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thing.swift; sourceTree = "<group>"; };
 		6FE2D9DE2412E88F00A64866 /* Listing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
-		6FE2D9E02412E9ED00A64866 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		6FE2D9E02412E9ED00A64866 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		6FE2D9E22412F16000A64866 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		6FE2D9E42412F61100A64866 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +80,7 @@
 				6FB2C9FA2411B54A00902C79 /* AccessTokenResponse.swift */,
 				6FE2D9DC2412E7E800A64866 /* Thing.swift */,
 				6FE2D9DE2412E88F00A64866 /* Listing.swift */,
-				6FE2D9E02412E9ED00A64866 /* Post.swift */,
+				6FE2D9E02412E9ED00A64866 /* PostModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -167,6 +169,7 @@
 				6FE2D9D52412D9D000A64866 /* PostsViewController.swift */,
 				6FE2D9DA2412DA4A00A64866 /* Main.storyboard */,
 				6FE2D9E22412F16000A64866 /* PostTableViewCell.swift */,
+				6FE2D9E42412F61100A64866 /* Post.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -256,11 +259,12 @@
 				6FB2C9FB2411B54A00902C79 /* AccessTokenResponse.swift in Sources */,
 				6FBCEECE240F3F45008EBD4A /* LoginViewController.swift in Sources */,
 				6FE2D9DD2412E7E800A64866 /* Thing.swift in Sources */,
-				6FE2D9E12412E9ED00A64866 /* Post.swift in Sources */,
+				6FE2D9E12412E9ED00A64866 /* PostModel.swift in Sources */,
 				6FE2D9D62412D9D000A64866 /* PostsViewController.swift in Sources */,
 				6FAB56CE2411B3D800EDC6E2 /* RedditAPI.swift in Sources */,
 				6FE2D9DF2412E88F00A64866 /* Listing.swift in Sources */,
 				6FB2C9FD2411B58A00902C79 /* RedditRepository.swift in Sources */,
+				6FE2D9E52412F61100A64866 /* Post.swift in Sources */,
 				6FE2D9D92412DA1400A64866 /* Storyboarded.swift in Sources */,
 				6FBCEECA240F3F45008EBD4A /* AppDelegate.swift in Sources */,
 				6F5EFE1524109AD900029DF7 /* RedditOAuthHandler.swift in Sources */,

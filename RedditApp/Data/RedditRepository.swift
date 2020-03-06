@@ -20,7 +20,7 @@ class RedditRepository {
         request(endpoint: .accessToken(code: code, redirectURI: redirectURI), completionHandler: completionHandler)
     }
     
-    typealias PostListing = Thing<Listing<Post>>
+    typealias PostListing = Thing<Listing<PostModel>>
     func fetchTopPosts(completionHandler: @escaping (Result<PostListing, Error>) -> Void) {
         request(endpoint: .top(count: nil, limit: 20), completionHandler: completionHandler)
     }
