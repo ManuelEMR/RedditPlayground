@@ -11,24 +11,58 @@ import UIKit
 class PostsViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
+    private let refreshControl = UIRefreshControl()
     
-    let redditRepository = UIApplication.dependencies.redditRepository
+    private let redditRepository = UIApplication.dependencies.redditRepository
+    private var posts: [Post] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupViews()
         requestPosts()
     }
     
-    private func requestPosts() {
-        redditRepository.fetchTopPosts { (result) in
+    private func setupViews() {
+        refreshControl.addTarget(self, action: #selector(requestPosts), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        tableView.dataSource = self
+    }
+    
+    @objc private func requestPosts() {
+        refreshControl.beginRefreshing()
+        redditRepository.fetchTopPosts { [weak self] (result) in
             switch result {
             case.success(let list):
-                print(list)
+                DispatchQueue.main.async {
+                    self?.posts = list.data.children.map { $0.data }
+                    self?.refreshControl.endRefreshing()
+                }
                 break
             case .failure(let err):
                 print(err)
             }
         }
     }
+}
+
+extension PostsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        posts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as? PostTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.configure(with: posts[indexPath.row])
+        return cell
+    }
+    
+    
 }
