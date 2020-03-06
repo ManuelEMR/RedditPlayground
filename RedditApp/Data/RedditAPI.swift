@@ -20,15 +20,18 @@ protocol API {
 
 enum RedditAPI: API {
     case accessToken(code: String, redirectURI: String)
+    case top(count: Int?, limit: Int)
     
     var baseURL: String {
-        "https://www.reddit.com/api/v1/"
+        "https://oauth.reddit.com/api/v1/"
     }
     
     var url: String {
         switch self {
         case .accessToken:
             return baseURL + "access_token"
+        case .top:
+            return baseURL + "top"
         }
     }
     
@@ -36,6 +39,8 @@ enum RedditAPI: API {
         switch self {
         case .accessToken:
             return "POST"
+        case .top:
+            return "GET"
         }
     }
     
@@ -45,6 +50,12 @@ enum RedditAPI: API {
             return ["grant_type": "authorization_code",
                     "code": code,
                     "redirect_uri": uri]
+        case .top(let count, let limit):
+            var p = ["limit": limit]
+            if let count = count {
+                p["count"] = count
+            }
+            return p
         }
     }
     
@@ -52,6 +63,8 @@ enum RedditAPI: API {
         switch self {
         case .accessToken:
             return ["Content-Type": "application/x-www-form-urlencoded"]
+        case .top:
+            return ["Content-Type": "application/json"]
         }
     }
     
@@ -62,6 +75,8 @@ enum RedditAPI: API {
             components.queryItems = params
                 .map { URLQueryItem(name: $0.key, value: $0.value as? String) }
             return components.query?.data(using: .utf8)
+        case .top:
+            return try? JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
         }
     }
 }

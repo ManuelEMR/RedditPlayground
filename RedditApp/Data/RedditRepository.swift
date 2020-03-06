@@ -14,6 +14,12 @@ class RedditRepository {
         request(endpoint: .accessToken(code: code, redirectURI: redirectURI), completionHandler: completionHandler)
     }
     
+    func fetchTopPosts() {
+//        request(endpoint: .top(count: 0, limit: 50)) { (<#Result<Decodable, Error>#>) in
+//            
+//        }
+    }
+    
     private func request<T: Decodable>(endpoint: RedditAPI, completionHandler: @escaping (Result<T, Error>) -> Void) {
         guard let url = URL(string: endpoint.url) else {
             return print("Malformed url \(endpoint.url)")

@@ -75,8 +75,8 @@
 		6FB2C9FE2411B63D00902C79 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				6FE2D9D82412DA1400A64866 /* Storyboarded.swift */,
 				6FE2D9D72412DA0400A64866 /* Extentions */,
+				6FE2D9D82412DA1400A64866 /* Storyboarded.swift */,
 				6FB2C9FF2411B64700902C79 /* AppDependencies.swift */,
 			);
 			path = Foundation;

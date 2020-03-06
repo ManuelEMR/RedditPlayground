@@ -10,7 +10,7 @@
         <!--Posts View Controller-->
         <scene sceneID="wbo-Vd-8eU">
             <objects>
-                <viewController id="g9g-Eq-0Su" customClass="PostsViewController" customModule="RedditApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostsViewController" id="g9g-Eq-0Su" customClass="PostsViewController" customModule="RedditApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y2D-t1-cQJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,6 +25,19 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7gy-4o-LWk" id="1jh-vr-Lgo">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="137"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtR-rA-MGn">
+                                                    <rect key="frame" x="28" y="19" width="42" height="99"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="DtR-rA-MGn" firstAttribute="leading" secondItem="1jh-vr-Lgo" secondAttribute="leadingMargin" constant="8" id="4tt-sf-TgE"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="DtR-rA-MGn" secondAttribute="bottom" constant="8" id="SOU-0V-9y3"/>
+                                                <constraint firstItem="DtR-rA-MGn" firstAttribute="top" secondItem="1jh-vr-Lgo" secondAttribute="topMargin" constant="8" id="nm1-oX-mut"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -39,6 +52,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="C8p-ey-H5O"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="ERl-I2-IFu" id="3qs-fz-GZH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xt4-Wt-ohA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

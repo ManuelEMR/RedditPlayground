@@ -68,21 +68,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let url = redditRedirect?.url else { return }
         
         dependencies.redditOAuthHandler.handleRedirectURL(url)
-        
-//        let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-//        guard let code = components?.queryItems?.first (where: { $0.name == "code" })?.value else { return }
-//
-//        dependencies.redditRepository.login(code: code, redirectURI: RedditOAuthHandler.redirectURI) { [unowned self] result in
-//            switch result {
-//            case .success(let response):
-//                self.dependencies.userDefaultsHandler.accessToken = response.accessToken
-//                self.dependencies.userDefaultsHandler.refreshToken = response.refreshToken
-//
-//                self.window?.rootViewController = PostsViewController.instantiate(storyboard: .main)
-//            case .failure:
-//                break
-//            }
-//        }
     }
 }
 
