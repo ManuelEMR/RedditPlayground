@@ -9,13 +9,12 @@
 import UIKit
 import WebKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     lazy var webView: WKWebView = {
         let config = WKWebViewConfiguration()
         config.applicationNameForUserAgent = "manuelemr-v1"
         let wkView = WKWebView(frame: view.bounds, configuration: config)
-        wkView.uiDelegate = self
         wkView.navigationDelegate = self
         wkView.scrollView.maximumZoomScale = 5
         view.addSubview(wkView)
@@ -23,7 +22,7 @@ class ViewController: UIViewController {
         return wkView
     }()
     
-    private let oauthHandler = RedditOAuthHandler()
+    private let oauthHandler: RedditOAuthHandler = UIApplication.dependencies.redditOAuthHandler
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,16 +33,11 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: WKUIDelegate {
-    
-}
-
-extension ViewController: WKNavigationDelegate {
+extension LoginViewController: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         guard let url = navigationAction.request.url,
             !url.absoluteString.hasPrefix("http://"),
             !url.absoluteString.hasPrefix("https://"),
-            let query = url.query,
             UIApplication.shared.canOpenURL(url) else {
                 decisionHandler(.allow)
                 return

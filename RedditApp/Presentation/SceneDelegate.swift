@@ -50,6 +50,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         print("Called!")
+        let redditRedirect = URLContexts.first { $0.url.absoluteString.starts(with: "memapp") }
+        
+        guard let url = redditRedirect?.url else { return }
+        
+        let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
+        guard let code = components?.queryItems?.first (where: { $0.name == "code" })?.value else { return }
+
+        let dependencies = UIApplication.dependencies
+        
+        dependencies.redditRepository.login(code: code, redirectURI: RedditOAuthHandler.redirectURI) { result in
+            
+            switch result {
+            case .success(let response):
+                dependencies.userDefaultsHandler.accessToken = response.accessToken
+                dependencies.userDefaultsHandler.refreshToken = response.refreshToken
+            case .failure:
+                break
+            }
+        }
     }
 }
 

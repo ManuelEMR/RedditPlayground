@@ -9,7 +9,7 @@
 import Foundation
 
 class RedditOAuthHandler {
-    private let redirectURI = "memapp://manuelemr.com/reddit"
+    static let redirectURI = "memapp://manuelemr.com/reddit"
     
     var code: String?
     var state: String?
@@ -24,6 +24,6 @@ class RedditOAuthHandler {
     
     var authorizeURL: String {
         let state = generateState()
-        return "https://www.reddit.com/api/v1/authorize?client_id=KuUP0BXhatcrFA&response_type=code&state=\(state)&redirect_uri=\(redirectURI)&duration=permanent&scope=read"
+        return "https://www.reddit.com/api/v1/authorize?client_id=KuUP0BXhatcrFA&response_type=code&state=\(state)&redirect_uri=\(RedditOAuthHandler.redirectURI)&duration=permanent&scope=read"
     }
 }
