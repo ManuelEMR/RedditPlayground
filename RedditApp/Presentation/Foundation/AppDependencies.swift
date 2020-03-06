@@ -11,6 +11,10 @@ import Foundation
 class AppDependencies {
     
     let redditRepository = RedditRepository()
-    let redditOAuthHandler = RedditOAuthHandler()
     let userDefaultsHandler = UserDefaultsHandler()
+    let redditOAuthHandler: RedditOAuthHandler
+    
+    init() {
+        redditOAuthHandler = RedditOAuthHandler(userDefaultsHandler: userDefaultsHandler)
+    }
 }

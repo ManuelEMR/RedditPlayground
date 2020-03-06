@@ -39,32 +39,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4DAC7B84-DC87-4169-85AA-8A02F769B348"
+            uuid = "B8FB337F-2D52-40D4-9175-05FE8D0FF634"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RedditApp/Presentation/SceneDelegate.swift"
+            filePath = "RedditApp/Presentation/Handlers/RedditOAuthHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "scene(_:openURLContexts:)"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "handleRedirectURL(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EED2A68D-1726-479A-A5B7-7DBE03226132"
+            uuid = "8EC9864D-81F6-41F4-857E-0C6659B5BEA2"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RedditApp/Presentation/SceneDelegate.swift"
+            filePath = "RedditApp/Presentation/Handlers/RedditOAuthHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "scene(_:openURLContexts:)"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "handleRedirectURL(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

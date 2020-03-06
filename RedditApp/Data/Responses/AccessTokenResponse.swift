@@ -13,5 +13,5 @@ struct AccessTokenResponse: Decodable {
     let tokenType: String
     let expiresIn: Double
     let scope: String
-    let refreshToken: String
+    let state: String
 }

@@ -11,13 +11,26 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
-
+    var dependencies: AppDependencies {
+        UIApplication.dependencies
+    }
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        let window = UIWindow(windowScene: windowScene)
+        
+        var rootVC: UIViewController
+//        if dependencies.userDefaultsHandler.accessToken != nil {
+//            rootVC = PostsViewController.instantiate(storyboard: .main)
+//        } else {
+            rootVC = LoginViewController.instantiate(storyboard: .auth)
+//        }
+        window.rootViewController = rootVC
+        self.window = window
+        window.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -54,21 +67,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let url = redditRedirect?.url else { return }
         
-        let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        guard let code = components?.queryItems?.first (where: { $0.name == "code" })?.value else { return }
-
-        let dependencies = UIApplication.dependencies
+        dependencies.redditOAuthHandler.handleRedirectURL(url)
         
-        dependencies.redditRepository.login(code: code, redirectURI: RedditOAuthHandler.redirectURI) { result in
-            
-            switch result {
-            case .success(let response):
-                dependencies.userDefaultsHandler.accessToken = response.accessToken
-                dependencies.userDefaultsHandler.refreshToken = response.refreshToken
-            case .failure:
-                break
-            }
-        }
+//        let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
+//        guard let code = components?.queryItems?.first (where: { $0.name == "code" })?.value else { return }
+//
+//        dependencies.redditRepository.login(code: code, redirectURI: RedditOAuthHandler.redirectURI) { [unowned self] result in
+//            switch result {
+//            case .success(let response):
+//                self.dependencies.userDefaultsHandler.accessToken = response.accessToken
+//                self.dependencies.userDefaultsHandler.refreshToken = response.refreshToken
+//
+//                self.window?.rootViewController = PostsViewController.instantiate(storyboard: .main)
+//            case .failure:
+//                break
+//            }
+//        }
     }
 }
 

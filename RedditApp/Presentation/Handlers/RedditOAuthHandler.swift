@@ -6,13 +6,23 @@
 //  Copyright © 2020 Manuel Munoz. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class RedditOAuthHandler {
     static let redirectURI = "memapp://manuelemr.com/reddit"
-    
-    var code: String?
+
     var state: String?
+    
+    private let userDefaultsHandler: UserDefaultsHandler
+    
+    init(userDefaultsHandler: UserDefaultsHandler) {
+        self.userDefaultsHandler = userDefaultsHandler
+    }
+    
+    var authorizeURL: String {
+        let state = generateState()
+        return "https://www.reddit.com/api/v1/authorize?client_id=KuUP0BXhatcrFA&response_type=token&state=\(state)&redirect_uri=\(RedditOAuthHandler.redirectURI)&scope=read"
+    }
     
     func generateState() -> String {
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -22,8 +32,17 @@ class RedditOAuthHandler {
         return randomString
     }
     
-    var authorizeURL: String {
-        let state = generateState()
-        return "https://www.reddit.com/api/v1/authorize?client_id=KuUP0BXhatcrFA&response_type=code&state=\(state)&redirect_uri=\(RedditOAuthHandler.redirectURI)&duration=permanent&scope=read"
+    func handleRedirectURL(_ url: URL) {
+        var components = URLComponents()
+        components.query = url.fragment
+        
+        guard let urlState = components.queryItems?.first(where: { $0.name == "state"})?.value,
+            urlState == self.state,
+            let accessToken = components.queryItems?.first(where: { $0.name == "access_token"})?.value else {
+                return
+        }
+        
+        userDefaultsHandler.accessToken = accessToken
+        UIApplication.shared.windows.first?.rootViewController = PostsViewController.instantiate(storyboard: .main)
     }
 }

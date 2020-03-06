@@ -8,7 +8,17 @@
 
 import Foundation
 
-enum RedditAPI {
+protocol API {
+    var baseURL: String { get }
+    var url: String { get }
+    var method: String { get }
+    var params: [String: Any] { get }
+    var headers: [String: String]? { get }
+    var body: Data? { get }
+    
+}
+
+enum RedditAPI: API {
     case accessToken(code: String, redirectURI: String)
     
     var baseURL: String {

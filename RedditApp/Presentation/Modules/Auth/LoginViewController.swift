@@ -42,12 +42,8 @@ extension LoginViewController: WKNavigationDelegate {
                 decisionHandler(.allow)
                 return
         }
-        
-        let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        if let stateValue = components?.queryItems?.first(where: { $0.name == "state" })?.value,
-        stateValue == oauthHandler.state {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            decisionHandler(.cancel)
-        }
+    
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        decisionHandler(.cancel)
     }
 }
