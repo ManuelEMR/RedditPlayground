@@ -10,14 +10,19 @@ import Foundation
 
 class RedditRepository {
     
+    private let userDefaultsHandler: UserDefaultsHandler
+    
+    init(userDefaultsHandler: UserDefaultsHandler) {
+        self.userDefaultsHandler = userDefaultsHandler
+    }
+    
     func login(code: String, redirectURI: String, completionHandler: @escaping (Result<AccessTokenResponse, Error>) -> Void) {
         request(endpoint: .accessToken(code: code, redirectURI: redirectURI), completionHandler: completionHandler)
     }
     
-    func fetchTopPosts() {
-//        request(endpoint: .top(count: 0, limit: 50)) { (<#Result<Decodable, Error>#>) in
-//            
-//        }
+    typealias PostListing = Thing<Listing<Post>>
+    func fetchTopPosts(completionHandler: @escaping (Result<PostListing, Error>) -> Void) {
+        request(endpoint: .top(count: nil, limit: 20), completionHandler: completionHandler)
     }
     
     private func request<T: Decodable>(endpoint: RedditAPI, completionHandler: @escaping (Result<T, Error>) -> Void) {
@@ -26,7 +31,10 @@ class RedditRepository {
         }
         
         var request = URLRequest(url: url)
-        request.setValue(authCredentials, forHTTPHeaderField: "Authorization")
+        
+        if let token = userDefaultsHandler.accessToken {
+         request.setValue("bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
         endpoint.headers?.forEach {
             request.setValue($0.value, forHTTPHeaderField: $0.key)
         }
@@ -64,14 +72,5 @@ class RedditRepository {
         let dec = JSONDecoder()
         dec.keyDecodingStrategy = .convertFromSnakeCase
         return dec
-    }
-    
-    var credentials: String {
-        "KuUP0BXhatcrFA:"
-    }
-    
-    var authCredentials: String? {
-        guard let authCredentials = credentials.data(using: .utf8)?.base64EncodedString() else { return nil }
-        return "Basic \(authCredentials)"
     }
 }

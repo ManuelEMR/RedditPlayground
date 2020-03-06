@@ -17,6 +17,18 @@ class PostsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        requestPosts()
+    }
+    
+    private func requestPosts() {
+        redditRepository.fetchTopPosts { (result) in
+            switch result {
+            case.success(let list):
+                print(list)
+                break
+            case .failure(let err):
+                print(err)
+            }
+        }
     }
 }

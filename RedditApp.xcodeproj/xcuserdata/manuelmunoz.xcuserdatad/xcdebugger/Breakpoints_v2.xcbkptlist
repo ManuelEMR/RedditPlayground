@@ -39,32 +39,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B8FB337F-2D52-40D4-9175-05FE8D0FF634"
-            shouldBeEnabled = "Yes"
+            uuid = "4CE95C89-81BF-487A-A226-6405935DF103"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RedditApp/Presentation/Handlers/RedditOAuthHandler.swift"
+            filePath = "RedditApp/Presentation/Modules/Main/PostsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "handleRedirectURL(_:)"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "requestPosts()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8EC9864D-81F6-41F4-857E-0C6659B5BEA2"
+            uuid = "CD8C3114-DC6B-46DB-A019-9CF72EFE295F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RedditApp/Presentation/Handlers/RedditOAuthHandler.swift"
+            filePath = "RedditApp/Presentation/Modules/Main/PostsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "handleRedirectURL(_:)"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "requestPosts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0436741F-4EB7-42D6-8B8A-F03350B14E24"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RedditApp/Data/RedditRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "request(endpoint:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "86AE06BB-B367-4EA9-95C1-0AD8066ABF1B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RedditApp/Data/RedditRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "request(endpoint:completionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

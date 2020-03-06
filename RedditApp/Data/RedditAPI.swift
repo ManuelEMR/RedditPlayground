@@ -23,15 +23,15 @@ enum RedditAPI: API {
     case top(count: Int?, limit: Int)
     
     var baseURL: String {
-        "https://oauth.reddit.com/api/v1/"
+        "https://oauth.reddit.com/"
     }
     
     var url: String {
         switch self {
         case .accessToken:
             return baseURL + "access_token"
-        case .top:
-            return baseURL + "top"
+        case .top(let _, let limit):
+            return baseURL + "top?limit=\(limit)"
         }
     }
     
@@ -76,7 +76,7 @@ enum RedditAPI: API {
                 .map { URLQueryItem(name: $0.key, value: $0.value as? String) }
             return components.query?.data(using: .utf8)
         case .top:
-            return try? JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+            return nil
         }
     }
 }
