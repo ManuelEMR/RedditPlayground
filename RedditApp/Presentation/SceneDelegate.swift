@@ -23,11 +23,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         
         var rootVC: UIViewController
-//        if dependencies.userDefaultsHandler.accessToken != nil {
-//            rootVC = PostsViewController.instantiate(storyboard: .main)
-//        } else {
+        if dependencies.userDefaultsHandler.accessToken != nil {
+            let postsVC = PostsViewController.instantiate(storyboard: .main)
+            rootVC = UINavigationController(rootViewController: postsVC)
+        } else {
             rootVC = LoginViewController.instantiate(storyboard: .auth)
-//        }
+        }
         window.rootViewController = rootVC
         self.window = window
         window.makeKeyAndVisible()

@@ -6,7 +6,11 @@
 //  Copyright © 2020 Manuel Munoz. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+enum RedditError: Error {
+    case unauthorized
+}
 
 class RedditRepository {
     
@@ -48,6 +52,11 @@ class RedditRepository {
                 error == nil else {
                 print("error", error ?? "Unknown error")
                     completionHandler(.failure(error ?? NSError(domain: "Unkown error", code: -1, userInfo: nil)))
+                return
+            }
+            
+            if response.statusCode == 401 {
+                completionHandler(.failure(RedditError.unauthorized))
                 return
             }
 
