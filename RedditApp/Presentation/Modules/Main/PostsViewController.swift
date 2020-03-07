@@ -14,11 +14,7 @@ class PostsViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     
     private let redditRepository = UIApplication.dependencies.redditRepository
-    private var posts: [Post] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    private var posts: [Post] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +24,8 @@ class PostsViewController: UIViewController {
     }
     
     private func setupViews() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "CLEAN", style: .plain, target: self, action: #selector(deleteAll))
+        
         refreshControl.addTarget(self, action: #selector(requestPosts), for: .valueChanged)
         tableView.refreshControl = refreshControl
         tableView.dataSource = self
@@ -39,15 +37,27 @@ class PostsViewController: UIViewController {
             switch result {
             case.success(let list):
                 DispatchQueue.main.async {
-                    self?.posts = list.data.children.map { $0.data }
-                        .map { Post(model: $0) }
+                    let posts = list.data.children.map { $0.data }
+                    .map { Post(model: $0) }
+                    self?.posts = posts
+                    let indexPaths = posts.indices.map { IndexPath(row: $0, section: 0) }
+                    self?.tableView.insertRows(at: indexPaths, with: .left)
                     self?.refreshControl.endRefreshing()
                 }
                 break
             case .failure(let err):
+                DispatchQueue.main.async {
+                    self?.view.window?.rootViewController = LoginViewController.instantiate(storyboard: .auth)
+                }
                 print(err)
             }
         }
+    }
+    
+    @objc private func deleteAll() {
+        let indexPaths = posts.indices.map { IndexPath(row: $0, section: 0) }
+        posts = []
+        tableView.deleteRows(at: indexPaths, with: .left)
     }
 }
 
@@ -64,6 +74,4 @@ extension PostsViewController: UITableViewDataSource {
         cell.configure(with: posts[indexPath.row])
         return cell
     }
-    
-    
 }
