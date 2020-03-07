@@ -27,6 +27,7 @@
 		6FE2D9E12412E9ED00A64866 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2D9E02412E9ED00A64866 /* PostModel.swift */; };
 		6FE2D9E32412F16000A64866 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2D9E22412F16000A64866 /* PostTableViewCell.swift */; };
 		6FE2D9E52412F61100A64866 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2D9E42412F61100A64866 /* Post.swift */; };
+		6FE2D9E72412FBDA00A64866 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2D9E62412FBDA00A64866 /* ImageDownloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		6FE2D9E02412E9ED00A64866 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		6FE2D9E22412F16000A64866 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		6FE2D9E42412F61100A64866 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		6FE2D9E62412FBDA00A64866 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				6FE2D9D72412DA0400A64866 /* Extentions */,
 				6FE2D9D82412DA1400A64866 /* Storyboarded.swift */,
 				6FB2C9FF2411B64700902C79 /* AppDependencies.swift */,
+				6FE2D9E62412FBDA00A64866 /* ImageDownloader.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				6FE2D9D62412D9D000A64866 /* PostsViewController.swift in Sources */,
 				6FAB56CE2411B3D800EDC6E2 /* RedditAPI.swift in Sources */,
 				6FE2D9DF2412E88F00A64866 /* Listing.swift in Sources */,
+				6FE2D9E72412FBDA00A64866 /* ImageDownloader.swift in Sources */,
 				6FB2C9FD2411B58A00902C79 /* RedditRepository.swift in Sources */,
 				6FE2D9E52412F61100A64866 /* Post.swift in Sources */,
 				6FE2D9D92412DA1400A64866 /* Storyboarded.swift in Sources */,

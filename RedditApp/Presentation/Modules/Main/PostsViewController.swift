@@ -31,8 +31,6 @@ class PostsViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(requestPosts), for: .valueChanged)
         tableView.refreshControl = refreshControl
         tableView.dataSource = self
-//        tableView.estimatedRowHeight = 44
-//        tableView.rowHeight = UITableView.automaticDimension
     }
     
     @objc private func requestPosts() {

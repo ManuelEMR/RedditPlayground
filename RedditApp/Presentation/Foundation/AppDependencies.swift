@@ -13,6 +13,7 @@ class AppDependencies {
     let redditRepository: RedditRepository
     let userDefaultsHandler = UserDefaultsHandler()
     let redditOAuthHandler: RedditOAuthHandler
+    let imageDownloader = ImageDownloader()
     
     init() {
         redditRepository = RedditRepository(userDefaultsHandler: userDefaultsHandler)
