@@ -21,7 +21,8 @@ class RedditOAuthHandler {
     
     var authorizeURL: String {
         let state = generateState()
-        return "https://www.reddit.com/api/v1/authorize?client_id=KuUP0BXhatcrFA&response_type=token&state=\(state)&redirect_uri=\(RedditOAuthHandler.redirectURI)&scope=read"
+        // strangely without the ".compact" it doesnt redirect on first login
+        return "https://www.reddit.com/api/v1/authorize.compact?client_id=KuUP0BXhatcrFA&response_type=token&state=\(state)&redirect_uri=\(RedditOAuthHandler.redirectURI)&scope=read"
     }
     
     func generateState() -> String {
