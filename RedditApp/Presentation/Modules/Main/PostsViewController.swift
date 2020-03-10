@@ -14,7 +14,26 @@ class PostsViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     
     private let redditRepository = UIApplication.dependencies.redditRepository
-    private var posts: [Post] = []
+    private var _posts: [Post] = []
+    private var posts: [Post] {
+        set {
+            let oldValue = _posts
+            _posts = newValue
+            if oldValue.isEmpty {
+                let indexPaths = newValue.indices.map { IndexPath(row: $0, section: 0) }
+                tableView.insertRows(at: indexPaths, with: .left)
+            } else if newValue.isEmpty {
+                let indexPaths = oldValue.indices.map { IndexPath(row: $0, section: 0) }
+                tableView.deleteRows(at: indexPaths, with: .left)
+            } else if oldValue.count == newValue.count { // this is very specific as we dont support pagination yet, only refresh
+                let indexPaths = newValue.indices.map { IndexPath(row: $0, section: 0) }
+                tableView.reloadRows(at: indexPaths, with: .left)
+            }
+        }
+        get {
+            _posts
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +59,6 @@ class PostsViewController: UIViewController {
                     let posts = list.data.children.map { $0.data }
                     .map { Post(model: $0) }
                     self?.posts = posts
-                    let indexPaths = posts.indices.map { IndexPath(row: $0, section: 0) }
-                    self?.tableView.insertRows(at: indexPaths, with: .left)
                     self?.refreshControl.endRefreshing()
                 }
                 break
@@ -55,9 +72,7 @@ class PostsViewController: UIViewController {
     }
     
     @objc private func deleteAll() {
-        let indexPaths = posts.indices.map { IndexPath(row: $0, section: 0) }
         posts = []
-        tableView.deleteRows(at: indexPaths, with: .left)
     }
 }
 
